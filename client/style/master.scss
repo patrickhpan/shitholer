@@ -4,13 +4,42 @@ body {
     background-color: $off-white;
 }
 #app-root {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+
     div#App {
-        padding: 100px;
-        background-color: $white;
+        position: absolute;
+        overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
+
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        min-height: 100%;
+
+        padding: 8em 4em 0 4em;
+
+        @media screen and (max-width: $breakpoint-large) and (min-width: $breakpoint-small) {
+            padding: 8em 2em 0 2em;
+        }
+    
+        @media screen and (max-width: $breakpoint-small) {
+            padding: 2em 1em 0 1em;
+        }
+
+        background-color: $off-black;
 
         display: flex;
         flex-direction: column;
         align-items: flex-start; 
+
     }
 }
 
@@ -30,6 +59,168 @@ body {
     cursor: pointer;
     padding: 0.5em 1em;
     margin: 0.5em;
-    background-color: rgba($primary, 0.3);
-    border-radius: 0.25em;
+    background-color: $primary;
+    color: white;
+    align-self: center;
+    font-family: $font1;
+    font-style: italic;
+    font-weight: 700;
+    user-select: none;
+    // font-size: 1.25em;
+    letter-spacing: 0.0125em;
+    text-align: center;
+
+    &.button-disabled {
+        cursor: not-allowed;
+        background-color: rgba($primary, 0.5);
+        color: rgba(white, 0.5);
+    }
+}
+
+
+.Landing {
+    width: 100%;
+    max-width: $max-width;
+    margin-left: auto;
+    margin-right: auto;
+
+    display: grid;
+    grid-gap: 1.25em;
+    grid-template-areas:    "header header header"
+                            "intro  app    video"
+                            "footer footer footer";
+    grid-template-columns: 25em 1fr 25em;
+
+    @media screen and (max-width: $breakpoint-large) and (min-width: $breakpoint-small) {
+        grid-gap: 1em;
+        grid-template-areas:    "header header"
+                                "intro  app"
+                                "video  video"
+                                "footer footer";
+        grid-template-columns: 1fr 2fr;
+    }
+
+    @media screen and (max-width: $breakpoint-small) {
+        grid-gap: 0.5em;
+        grid-template-areas: "header" "app" "intro" "video" "footer";
+        grid-template-columns: 1fr;
+    }
+
+
+    > .Header {
+        grid-area: header;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: center;
+
+        > h1 {
+            @include highlight(84px);
+
+            @media screen and (max-width: $breakpoint-large) and (min-width: $breakpoint-small) {
+                @include highlight(60px);
+            }
+        
+            @media screen and (max-width: $breakpoint-small) {
+                @include highlight(8vw);
+            }
+        }
+    }
+
+    > div.intro-section,
+    > div.picture-section, 
+    > div.video-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.25em;
+        
+        background-color: $black;
+
+        @media screen and (max-width: $breakpoint-large) and (min-width: $breakpoint-small) {
+            padding: 1em;
+        }
+    
+        @media screen and (max-width: $breakpoint-small) {
+            padding: 0.5em;
+        }
+    }
+
+    > div.picture-section {
+        grid-area: app;
+        
+        > h1 {
+            @include highlight(2em, 700);
+        }
+
+        > h2 {
+            @include highlight(1.5em, 700);
+        }
+
+        > .Picture {
+            > img, 
+            > canvas {
+                width: 100%;
+                cursor: pointer;
+            }
+        }
+
+        > .buttons {
+            display: flex;
+            flex-direction: row;
+            align-items: baseline;
+            justify-content: center;
+            flex-wrap: wrap;
+
+            > .button {
+                min-width: 18em;
+            }
+        }
+    }
+
+    > div.video-section {
+        grid-area: video;
+        > .Video {
+            position: relative;
+            margin-bottom: 2em;
+            width: 100%;
+            height: 0;
+            padding-bottom: (315 / 560 * 100%);
+            >iframe {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+            }
+        }
+        > div.monologue {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+        }
+        > p.monologue-credit {
+            font-style: italic;
+            font-family: $font2;
+            color: $off-white;
+        }
+    }
+}
+
+p.line {
+    font-family: $font2;
+    text-align: justify;
+    margin: 0;
+    margin-bottom: 1em;
+    color: $off-white;
+    line-height: 1.5em;
+    // word-break: break-all;
+    hyphens: manual;
+}
+
+#file-selector {
+    display: none;
+    pointer-events: none;
 }

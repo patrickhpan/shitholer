@@ -1,18 +1,21 @@
 import * as types from './types';
 import { wrapAction } from 'util/reduxStatus'
 
-const login = wrapAction((id) => ({
-    type: types.login,
+const getPFP = wrapAction((url) => ({
+    type: types.getPFP,
     data: {
-        id
-    } 
+        url
+    }
 }))
 
-const logout = () => ({
-    type: types.logout
-})
+const selectImage = wrapAction((dataUrl) => ({
+    type: types.selectImage,
+    data: {
+        dataUrl
+    }
+}))
 
 export {
-    login,
-    logout
+    getPFP,
+    selectImage
 }

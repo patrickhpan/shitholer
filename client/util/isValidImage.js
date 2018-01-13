@@ -1,0 +1,1 @@
+export default type => ['image/jpeg', 'image/png'].includes(type) === true

@@ -2,43 +2,50 @@ import * as types from './types';
 import { start, success, fail } from 'util/reduxStatus';
 
 const initialState = {
-    isLoggingIn: false,
-    isLoggedIn: false,
-    id: null
+    loaded: false,
+    pfp: null,
+    customImage: null
 }
 
 const reducer = (state = initialState, action) => {
     const { type, data } = action;
     switch (type) {
-        case start(types.login): {
+        case start(types.getPFP): {
+            return state
+        }
+        case success(types.getPFP): {
+            const { url } = data;
             return {
                 ...state,
-                isLoggingIn: true
+                loaded: true,
+                pfp: url,
+                customImage: null
             }
         }
-        case success(types.login): {
-            const { id } = data;
+        case fail(types.getPFP): {
             return {
                 ...state,
-                isLoggingIn: false,
-                isLoggedIn: true,
-                id: id
+                loaded: true,
+                pfp: null
+            }
+        }    
+        case start(types.selectImage): {
+            return state;
+        }
+        case success(types.selectImage): {
+            const { dataUrl } = data;
+            return {
+                ...state,
+                loaded: true,
+                customImage: dataUrl
             }
         }
-        case fail(types.login): {
+        case fail(types.selectImage): {
             return {
                 ...state,
-                isLoggingIn: false,
-                isLoggedIn: false
-            }
-        }
-        case types.logout: {
-            state.isLoggedIn = false;
-            state.id = null;
-            return {
-                ...state,
-                isLoggedIn: false,
-                id: null
+                loaded: true,
+                pfp: null,
+                customImage: null
             }
         }
         default: {

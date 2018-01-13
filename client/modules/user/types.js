@@ -1,7 +1,7 @@
-const login = 'auth/login'
-const logout = 'auth/logout'
+const getPFP = 'auth/getPFP'
+const selectImage = 'auth/selectImage'
 
 export {
-    login,
-    logout
+    getPFP,
+    selectImage 
 }

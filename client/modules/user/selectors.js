@@ -1,9 +1,15 @@
-const isLoggingIn = state => state.user.isLoggingIn === true
-const isLoggedIn = state => state.user.isLoggedIn === true
-const getUserId = state => state.user.id;
+const hasCustomImage = state => state.user.customImage !== null
+const getCustomImage = state => state.user.customImage
+
+const hasFbImage = state => state.user.pfp !== null
+const getFbImage = state => state.user.pfp
+
+const isLoaded = state => state.user.loaded === true
 
 export {
-    isLoggingIn,
-    isLoggedIn,
-    getUserId
+    hasCustomImage,
+    getCustomImage,
+    hasFbImage,
+    getFbImage,
+    isLoaded
 }

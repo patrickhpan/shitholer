@@ -1,10 +1,22 @@
+@import url('https://fonts.googleapis.com/css?family=Cousine|Roboto:400,700i,900i');
+
 $white: #ffffff;
 $off-white: #eeeeee;
-$primary: #5D5D81;
+ $black: #111111;
+ $off-black: #222222;
+$primary: #6d3b1e;
 
 
-$font1: 'Helvetica', 
+$font1: 'Roboto',
+    'Helvetica', 
     sans-serif;
+
+$font2: 'Cousine',
+    monospace;
+
+$breakpoint-large: 1400px;
+$breakpoint-small: 960px;
+$max-width: 1800px;
 
 * {
     box-sizing: border-box;
@@ -19,3 +31,15 @@ h1, h2, h3, h4, h5, h6 {
     margin-top: 0;
 }
 
+@mixin highlight($font-size: 1em, $font-weight: 900) {
+    font-size: $font-size;
+    padding: 0.1em 0.5em 0.05em 0.5em;
+
+    background: $primary;
+    color: white;
+    
+    font-family: $font1;
+    font-weight: $font-weight;
+    font-style: italic;
+    letter-spacing: 0.0125em;
+}

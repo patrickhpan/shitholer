@@ -3,12 +3,10 @@ import { Route } from 'react-router-dom';
 import keyify from 'util/keyify'
 
 import App from 'containers/App';
-import HelloWorld from 'containers/HelloWorld';
-import About from 'containers/About';
+import Landing from 'containers/Landing';
 
 const routes = [
-    <Route exact path="/" component={HelloWorld} />,
-    <Route path="/about" component={About} />
+    <Route exact path="/" component={Landing} />
 ]
 
 export default keyify(routes)
