@@ -55,12 +55,15 @@ class PFP extends React.Component {
         overlay.src = overlayImg
     }
     openCanvas = () => {
-        const w = window.open('about:blank', '_blank');
-        w.document.write(`<style>body{margin:0;}</style><img src=${this.canvas.toDataURL("image/png")} />`)
+        this.saveLink.href = this.canvas.toDataURL("image/png");
+        this.saveLink.download = "profpic.png";
+        this.saveLink.click()
     }
     registerCanvas = canvas => { this.canvas = canvas };
+    registerLink = link => { this.saveLink = link };
     render() {
         return <div className="Picture">
+            <a ref={this.registerLink} style={{ 'display': 'none' }} />
             <canvas
                 width={CANVAS_SIZE}
                 height={CANVAS_SIZE}
