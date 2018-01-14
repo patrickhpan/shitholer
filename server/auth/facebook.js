@@ -1,4 +1,4 @@
-const path = require('path')
+const url = require('url')
 const FacebookStrategy = require('passport-facebook').Strategy;
 const getPFP = require('../apis/getPFP');
 
@@ -6,7 +6,7 @@ function facebook(passport) {
     passport.use(new FacebookStrategy({
             clientID: process.env.FB_APP_ID,
             clientSecret: process.env.FB_APP_SECRET,
-            callbackURL: path.resolve(process.env.APP_DEPLOY_URL, "auth/fb/callback")
+            callbackURL: url.resolve(process.env.APP_DEPLOY_URL, "/auth/fb/callback")
         },
         function (accessToken, refreshToken, profile, cb) {
             profile.token = accessToken;
