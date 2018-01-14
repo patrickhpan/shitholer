@@ -56,18 +56,11 @@ body {
 }
 
 .button {
+    @include highlight(1em, 700);
     cursor: pointer;
-    padding: 0.5em 1em;
     margin: 0.5em;
-    background-color: $primary;
-    color: white;
     align-self: center;
-    font-family: $font1;
-    font-style: italic;
-    font-weight: 700;
     user-select: none;
-    // font-size: 1.25em;
-    letter-spacing: 0.0125em;
     text-align: center;
 
     &.button-disabled {
@@ -97,7 +90,7 @@ body {
                                 "intro  app"
                                 "video  video"
                                 "footer footer";
-        grid-template-columns: 1fr 2fr;
+        grid-template-columns: 1fr 1fr;
     }
 
     @media screen and (max-width: $breakpoint-small) {
@@ -133,7 +126,7 @@ body {
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: space-between;
+        justify-content: flex-start;
         padding: 1.25em;
         
         background-color: $black;
@@ -152,10 +145,26 @@ body {
         
         > h1 {
             @include highlight(2em, 700);
+
+            @media screen and (max-width: $breakpoint-large) and (min-width: $breakpoint-small) {
+                @include highlight(1.25em);
+            }
+        
+            @media screen and (max-width: $breakpoint-small) {
+                @include highlight(4vw);
+            }
         }
 
         > h2 {
             @include highlight(1.5em, 700);
+
+            @media screen and (max-width: $breakpoint-large) and (min-width: $breakpoint-small) {
+                @include highlight(1em);
+            }
+        
+            @media screen and (max-width: $breakpoint-small) {
+                @include highlight(4vw);
+            }
         }
 
         > .Picture {
